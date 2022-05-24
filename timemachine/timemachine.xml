@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>TimeMachine</Name>
+  <Repository>mbentley/timemachine</Repository>
+  <Registry>https://hub.docker.com/r/mbentley/timemachine</Registry>
+  <Network>br0</Network>
+  <MyIP>192.168.178.3</MyIP>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support/>
+  <Project>https://github.com/mbentley/docker-timemachine</Project>
+  <Overview/>
+  <Category>Backup: Status:Stable</Category>
+  <WebUI/>
+  <TemplateURL/>
+  <Icon>https://upload.wikimedia.org/wikipedia/de/f/f4/Time_Machine_%28Apple%29_Logo.png</Icon>
+  <ExtraParams>--hostname timemachine</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1653409900</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires>You will need to set the filesystem permissions on disk. By default, the timemachine user is 1000:1000.&#xD;
+&#xD;
+Granting Permissions to write to the directory can be achieved by executing the following command on the host (Unraid): sudo chown -R 1000:1000 /mnt/user/timemachine/&#xD;
+&#xD;
+The backing data store for your persistent time machine data must support extended file attributes (xattr). Usually for shares in the Unraid Array this is not a problem. Remote file systems, such as NFS, will very likely not support xattrs. This image will check and try to set xattrs to a test file in /opt/${TM_USERNAME} to warn the user if they are not supported but this will not prevent the image from running.&#xD;
+&#xD;
+Also note that if you change the User Name (TM_USERNAME) value that it will change the data path for backup data inside of the container from /opt/timemachine to /opt/value-of-TM_USERNAME.</Requires>
+  <Config Name="Time Machine Backup Data" Target="/opt/timemachine" Default="" Mode="rw" Description="Directory to store the time machine backups. If you change the User Name (TM_USERNAME) value that it will change the data path from /opt/timemachine to /opt/value-of-TM_USERNAME." Type="Path" Display="always" Required="false" Mask="false">/mnt/user/timemachine/</Config>
+  <Config Name="Size Limit" Target="VOLUME_SIZE_LIMIT" Default="1 T" Mode="" Description="Limits the reported disksize, thus preventing Time Machine from using the whole real disk space for backup. The option takes a number plus an optional unit (e.g. 1 T for 1 Terrabyte).&#13;&#10;&#13;&#10;IMPORTANT: This is an approximated calculation that only takes into account the contents of Time Machine sparsebundle images. Therefore you MUST NOT use this volume to store other content when using this option, because it would NOT be accounted.&#13;&#10;The calculation works by reading the band size from the Info.plist XML file of the sparsebundle, reading the bands/ directory counting the number of band files, and then multiplying one with the other." Type="Variable" Display="always" Required="false" Mask="false">1 T</Config>
+  <Config Name="User Name" Target="TM_USERNAME" Default="" Mode="" Description="sets the username time machine runs as" Type="Variable" Display="always" Required="false" Mask="false">timemachine</Config>
+  <Config Name="User Password" Target="PASSWORD" Default="Z92efVNcokU26x" Mode="" Description="sets the password for the timemachine user. The default value is Z92efVNcokU26x." Type="Variable" Display="always" Required="false" Mask="true">Z92efVNcokU26x</Config>
+  <Config Name="Advertised Hostname" Target="ADVERTISED_HOSTNAME" Default="" Mode="" Description="Avahi will advertise the smb services at this hostname instead of the local hostname" Type="Variable" Display="advanced" Required="false" Mask="false">timemachine</Config>
+  <Config Name="Use Custom SMB Configuration" Target="CUSTOM_SMB_CONF" Default="false" Mode="" Description="indicates that you are going to bind mount a custom config to /etc/samba/smb.conf if set to true" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Custom User" Target="CUSTOM_USER" Default="false" Mode="" Description="indicates that you are going to bind mount /etc/password, /etc/group, and /etc/shadow; and create data directories if set to true" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="Debug Level" Target="DEBUG_LEVEL" Default="1" Mode="" Description="sets the debug level for nmbd and smbd" Type="Variable" Display="advanced" Required="false" Mask="false">1</Config>
+  <Config Name="Mimic Model" Target="MIMIC_MODEL" Default="TimeCapsule8,119" Mode="" Description="sets the value of time machine to mimic (e.g. TimeCapsule8,119 or TimeCapsule6,116)" Type="Variable" Display="advanced" Required="false" Mask="false">TimeCapsule8,119</Config>
+  <Config Name="External Configuration Directory" Target="EXTERNAL_CONF" Default="" Mode="" Description="specifies a directory in which individual variable files, ending in .conf. In order to add multiple users who have their own shares, you will need to create a file for each user and put them in a directory." Type="Variable" Display="advanced" Required="false" Mask="false"/>
+  <Config Name="Hide Shares" Target="HIDE_SHARES" Default="no" Mode="" Description="set to yes if you would like only the share(s) a user can access to appear" Type="Variable" Display="advanced" Required="false" Mask="false">no</Config>
+  <Config Name="Group Name" Target="TM_GROUPNAME" Default="timemachine" Mode="" Description="sets the group name time machine runs as" Type="Variable" Display="advanced" Required="false" Mask="false">timemachine</Config>
+  <Config Name="User UID" Target="TM_UID" Default="1000" Mode="" Description="sets the UID of the Executing User (TM_USERNAME)" Type="Variable" Display="advanced" Required="false" Mask="false">1000</Config>
+  <Config Name="Set Permissions" Target="SET_PERMISSIONS" Default="false" Mode="" Description="set to true to have the entrypoint set ownership and permission on the /opt/ in the container" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="SMB Inherit Permissions" Target="SMB_INHERIT_PERMISSIONS" Default="no" Mode="" Description="if yes, permissions for new files will be forced to match the parent folder" Type="Variable" Display="advanced" Required="false" Mask="false">no</Config>
+  <Config Name="SMB fruit:nfs_aces" Target="SMB_NFS_ACES" Default="yes" Mode="" Description="value of fruit:nfs_aces; support for querying and modifying the UNIX mode of directory entries via NFS ACEs" Type="Variable" Display="advanced" Required="false" Mask="false">yes</Config>
+  <Config Name="SMB fruit:metadata" Target="SMB_METADATA" Default="stream" Mode="" Description="value of fruit:metadata; controls where the OS X metadata stream is stored" Type="Variable" Display="advanced" Required="false" Mask="false">stream</Config>
+  <Config Name="SMB Port" Target="SMB_PORT" Default="445" Mode="" Description="sets the port that Samba will be available on" Type="Variable" Display="advanced" Required="false" Mask="false">445</Config>
+  <Config Name="SMB vfs objects" Target="SMB_VFS_OBJECTS" Default="acl_xattr fruit streams_xattr" Mode="" Description="value of vfs objects" Type="Variable" Display="advanced" Required="false" Mask="false">acl_xattr fruit streams_xattr</Config>
+  <Config Name="SMB Workgroup Name" Target="WORKGROUP" Default="WORKGROUP" Mode="" Description="set the SMB workgroup name" Type="Variable" Display="advanced" Required="false" Mask="false">WORKGROUP</Config>
+  <Config Name="Group GID" Target="TM_GID" Default="1000" Mode="" Description="sets the GID of the TM_GROUPNAME group" Type="Variable" Display="advanced" Required="false" Mask="false">1000</Config>
+  <Config Name="Share Name" Target="SHARE_NAME" Default="TimeMachine" Mode="" Description="sets the name of the timemachine share to." Type="Variable" Display="advanced" Required="false" Mask="false">TimeMachine</Config>
+</Container>
