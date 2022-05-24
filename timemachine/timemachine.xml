@@ -4,10 +4,10 @@
   <Repository>mbentley/timemachine</Repository>
   <Registry>https://hub.docker.com/r/mbentley/timemachine</Registry>
   <Network>br0</Network>
-  <MyIP>192.168.178.3</MyIP>
+  <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support/>
+  <Support>https://forums.unraid.net/topic/123985-timemachine-application-support-thread/</Support>
   <Project>https://github.com/mbentley/docker-timemachine</Project>
   <Overview/>
   <Category>Backup: Status:Stable</Category>
@@ -17,7 +17,7 @@
   <ExtraParams>--hostname timemachine</ExtraParams>
   <PostArgs/>
   <CPUset/>
-  <DateInstalled>1653409900</DateInstalled>
+  <DateInstalled/>
   <DonateText/>
   <DonateLink/>
   <Requires>You will need to set the filesystem permissions on disk. By default, the timemachine user is 1000:1000.&#xD;
