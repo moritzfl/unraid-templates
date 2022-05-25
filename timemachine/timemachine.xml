@@ -9,7 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://forums.unraid.net/topic/123985-timemachine-application-support-thread/</Support>
   <Project>https://github.com/mbentley/docker-timemachine</Project>
-  <Overview/>
+  <Overview>This application provides a Samba based Time Machine network share. It can be configured to support multiple or single users and restrict the maximum size used for Time Machine backups.</Overview>
   <Category>Backup: Status:Stable</Category>
   <WebUI/>
   <TemplateURL/>
