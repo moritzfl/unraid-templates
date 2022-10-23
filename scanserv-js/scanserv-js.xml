@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>scanservjs</Name>
+  <Repository>sbs20/scanservjs</Repository>
+  <Registry>https://hub.docker.com/r/sbs20/scanservjs</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>true</Privileged>
+  <Support/>
+  <Project>https://github.com/sbs20/scanservjs</Project>
+  <Overview>scanservjs is a web UI frontend for your scanner. You can perform scans using your USB or network scanner through this web UI.  The application allows you to share one or more scanners (using SANE) on a network without the need for drivers or complicated installation.</Overview>
+  <Category>Drivers: Tools: MediaApp:Photos</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <TemplateURL/>
+  <Icon>https://www.moritzf.de/user/pages/02.projects/scanserv-js.png</Icon>
+  <ExtraParams> --privileged</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1666553416</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Path for Scan Output" Target="/app/data/output" Default="" Mode="rw" Description="Path for the file output from performed scans" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/photo/scans</Config>
+  <Config Name="Web Interface Port" Target="8080" Default="" Mode="tcp" Description="Port for the web interface" Type="Port" Display="always" Required="false" Mask="false">1234</Config>
+  <Config Name="Saned Net Hosts" Target="SANED_NET_HOSTS" Default="" Mode="" Description="If you want to use a SaneOverNetwork scanner then to perform the equivalent of adding hosts to /etc/sane.d/net.conf specify a list of ip addresses separated by semicolons in the SANED_NET_HOSTS environment variable." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Airscan Devices" Target="AIRSCAN_DEVICES" Default="" Mode="" Description="If you want to specifically add sane-airscan devices to your /etc/sane.d/airscan.conf then use the AIRSCAN_DEVICES environment variable (semicolon delimited)." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Ignore Scanimage List" Target="SCANIMAGE_LIST_IGNORE" Default="false" Mode="" Description="Forces the application to ignore the result of the automatic device detection (scanimage -L) and instead only uses the entries present in the configuration file and docker environment variables." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="Devices" Target="DEVICES" Default="" Mode="" Description="Force add devices use DEVICES (semicolon delimited)." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="OCR Language" Target="OCR_LANG" Default="" Mode="" Description="Determines the language that is to be used for OCR (optical character recognition). The value has to conform with tesseracts naming scheme." Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="dbus" Target="/var/run/dbus" Default="" Mode="rw" Description="dbus (needed for automatic detection of network scanners through bonjour)" Type="Path" Display="advanced" Required="false" Mask="false">/var/run/dbus</Config>
+  <Config Name="AppData Config Path" Target="/app/config" Default="" Mode="rw" Description="Folder for persisting configuration data" Type="Path" Display="advanced-hide" Required="true" Mask="false">/mnt/user/appdata/scanservjs</Config>
+</Container>
